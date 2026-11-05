@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>交易所高息理財日報</title>
+  <link rel="alternate" type="application/rss+xml" title="交易所高息理財日報" href="feed.xml">
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --border: #d2d2d7;
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang TC", "Helvetica Neue", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    header {
+      background: rgba(255,255,255,0.72);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+    }
+    .header-inner { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 600; font-size: 1.25rem; letter-spacing: -0.01em; }
+    .main {
+      display: block;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 56px 0 0;
+    }
+    .date-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px 20px;
+      margin-bottom: 28px;
+      font-size: 0.875rem;
+      color: #86868b;
+    }
+    .date-nav[hidden] { display: none !important; }
+    .date-nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .date-nav-arrow {
+      background: none;
+      border: none;
+      color: #86868b;
+      font-size: 1.125rem;
+      line-height: 1;
+      cursor: pointer;
+      padding: 4px 6px;
+      font-family: inherit;
+    }
+    .date-nav-arrow:hover:not(:disabled) { color: #1d1d1f; }
+    .date-nav-arrow:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+    .date-nav-label {
+      color: #1d1d1f;
+      font-weight: 500;
+      min-width: 4.5em;
+      text-align: center;
+    }
+    .date-nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      justify-content: flex-end;
+    }
+    .date-nav-list button {
+      background: none;
+      border: none;
+      color: #86868b;
+      font-size: 0.875rem;
+      font-family: inherit;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1.4;
+    }
+    .date-nav-list button:hover { color: #1d1d1f; }
+    .date-nav-list button.is-active {
+      color: #1d1d1f;
+      font-weight: 500;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .empty-state {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 32px 28px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      margin-bottom: 8px;
+    }
+    .meta-line {
+      color: var(--muted);
+      font-size: 0.8125rem;
+      margin-bottom: 20px;
+      letter-spacing: 0.02em;
+    }
+    .cards { display: grid; gap: 16px; }
+    .card {
+      background: var(--card);
+      border: none;
+      border-radius: 18px;
+      padding: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+      transition: box-shadow 0.28s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .card:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .card p { font-size: 0.9rem; color: var(--muted); margin-bottom: 10px; }
+    .card .why-care {
+      font-size: 0.875rem;
+      color: var(--text);
+      background: rgba(0,0,0,0.03);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .card .why-care strong { font-weight: 600; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .tag {
+      display: inline-block;
+      background: rgba(0,0,0,0.04);
+      color: var(--muted);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      flex-wrap: wrap;
+    }
+    .source { color: var(--muted); font-size: 0.8125rem; }
+    .card-footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .card-footer a:hover { color: var(--accent-hover); }
+    .whale-note {
+      border-left: 3px solid rgba(0,113,227,0.35);
+      padding-left: 14px;
+    }
+    .site-footer {
+      max-width: 720px;
+      margin: 64px auto 56px;
+      padding: 0 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .site-footer h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .site-footer p { font-size: 0.9rem; margin-bottom: 16px; line-height: 1.7; }
+    .site-footer .rss-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 0.85rem;
+      color: #86868b;
+      text-decoration: none;
+    }
+    .site-footer .rss-link:hover { color: #0071e3; }
+    @media (max-width: 900px) {
+      .main { padding: 40px 0 0; }
+      .site-footer { margin: 48px auto 40px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-inner">
+      <div class="logo">交易所高息理財日報</div>
+    </div>
+  </header>
+
+  <div class="container main">
+    <nav class="date-nav" id="date-nav" hidden aria-label="歷史日期">
+      <div class="date-nav-controls">
+        <button type="button" class="date-nav-arrow" id="date-prev" aria-label="較早一日">‹</button>
+        <span class="date-nav-label" id="date-label">今日</span>
+        <button type="button" class="date-nav-arrow" id="date-next" aria-label="較近一日">›</button>
+      </div>
+      <div class="date-nav-list" id="date-list"></div>
+    </nav>
+
+    <main>
+      <p class="meta-line" id="updated-meta" hidden></p>
+      <section id="headlines">
+        <h2 class="section-title">今日頭條</h2>
+        <div class="empty-state">載入中…</div>
+      </section>
+      <section id="whale-notes" style="margin-top: 48px;">
+        <h2 class="section-title">巨鯨筆記</h2>
+        <div class="empty-state">載入中…</div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <h3>交易所高息與理財日報</h3>
+    <p>追蹤交易所高息產品、理財活動與市場動態。</p>
+    <a class="rss-link" href="feed.xml">訂閱 RSS</a>
+  </footer>
+
+  <script>
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function todayISO() {
+      return new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Asia/Hong_Kong',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+      }).format(new Date());
+    }
+
+    function formatDayLabel(iso) {
+      if (iso === todayISO()) return '今日';
+      const parts = iso.split('-');
+      return parseInt(parts[1], 10) + '月' + parseInt(parts[2], 10) + '日';
+    }
+
+    function formatListLabel(iso) {
+      const parts = iso.split('-');
+      return parseInt(parts[1], 10) + '月' + parseInt(parts[2], 10) + '日';
+    }
+
+    function isValidDateParam(s) {
+      return typeof s === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(s);
+    }
+
+    let archiveDates = [];
+    let timeline = [];
+    let currentDate = todayISO();
+
+    function pathForDate(iso) {
+      if (iso === todayISO()) return 'data.json';
+      const entry = archiveDates.find(function (e) { return e && e.date === iso; });
+      return entry && entry.path ? entry.path : null;
+    }
+
+    function buildTimeline() {
+      const set = new Set();
+      archiveDates.forEach(function (e) {
+        if (e && e.date) set.add(e.date);
+      });
+      set.add(todayISO());
+      return Array.from(set).sort();
+    }
+
+    function setQueryDate(iso) {
+      const url = new URL(window.location.href);
+      if (iso === todayISO()) {
+        url.searchParams.delete('date');
+      } else {
+        url.searchParams.set('date', iso);
+      }
+      history.replaceState(null, '', url.pathname + url.search + url.hash);
+    }
+
+    function renderDateNav() {
+      const nav = document.getElementById('date-nav');
+      if (!archiveDates.length) {
+        nav.hidden = true;
+        return;
+      }
+      nav.hidden = false;
+      timeline = buildTimeline();
+      document.getElementById('date-label').textContent = formatDayLabel(currentDate);
+
+      const idx = timeline.indexOf(currentDate);
+      const prevBtn = document.getElementById('date-prev');
+      const nextBtn = document.getElementById('date-next');
+      prevBtn.disabled = idx <= 0;
+      nextBtn.disabled = idx < 0 || idx >= timeline.length - 1;
+
+      const list = document.getElementById('date-list');
+      list.innerHTML = '';
+      archiveDates.forEach(function (e) {
+        if (!e || !e.date) return;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = formatListLabel(e.date);
+        if (e.date === currentDate) {
+          btn.className = 'is-active';
+          btn.setAttribute('aria-current', 'true');
+        }
+        btn.addEventListener('click', function () { selectDate(e.date); });
+        list.appendChild(btn);
+      });
+    }
+
+    function renderTags(tags) {
+      if (!Array.isArray(tags) || !tags.length) return '';
+      return '<div class="tags">' + tags.map(function (t) {
+        return '<span class="tag">' + escapeHtml(t) + '</span>';
+      }).join('') + '</div>';
+    }
+
+    function headlineCard(h) {
+      const title = escapeHtml(h.title || '');
+      const summary = escapeHtml(h.summary || '');
+      const why = String(h.whyCare || '').trim();
+      const whyHtml = why
+        ? '<div class="why-care"><strong>為何在意：</strong>' + escapeHtml(why) + '</div>'
+        : '';
+      const source = escapeHtml(h.source || '');
+      const link = String(h.link || '').trim();
+      const read = link
+        ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener noreferrer">閱讀 →</a>'
+        : '';
+      return (
+        '<article class="card">' +
+          renderTags(h.tags) +
+          '<h3>' + title + '</h3>' +
+          (summary ? '<p>' + summary + '</p>' : '') +
+          whyHtml +
+          '<div class="card-footer">' +
+            '<span class="source">' + source + '</span>' +
+            read +
+          '</div>' +
+        '</article>'
+      );
+    }
+
+    function whaleCard(n) {
+      const title = escapeHtml(n.title || n.note || '');
+      const body = escapeHtml(n.summary || n.body || n.note || '');
+      const source = escapeHtml(n.source || '');
+      const link = String(n.link || '').trim();
+      const read = link
+        ? '<a href="' + escapeHtml(link) + '" target="_blank" rel="noopener noreferrer">閱讀 →</a>'
+        : '';
+      const heading = n.title ? '<h3>' + title + '</h3>' : '';
+      const para = body && (n.title || body !== title) ? '<p>' + body + '</p>' : (!n.title && body ? '<p>' + body + '</p>' : '');
+      return (
+        '<article class="card whale-note">' +
+          renderTags(n.tags) +
+          heading +
+          para +
+          '<div class="card-footer">' +
+            '<span class="source">' + source + '</span>' +
+            read +
+          '</div>' +
+        '</article>'
+      );
+    }
+
+    async function selectDate(iso) {
+      if (!iso || iso === currentDate) return;
+      const path = pathForDate(iso);
+      if (!path && iso !== todayISO()) return;
+      currentDate = iso;
+      setQueryDate(iso);
+      renderDateNav();
+      await loadData(pathForDate(iso) || 'data.json');
+    }
+
+    async function loadData(url) {
+      const src = url || 'data.json';
+      const headlinesEl = document.getElementById('headlines');
+      const whaleEl = document.getElementById('whale-notes');
+      const metaEl = document.getElementById('updated-meta');
+      const isToday = currentDate === todayISO();
+      const headlinesTitle = isToday ? '今日頭條' : (formatListLabel(currentDate) + '頭條');
+      const whaleTitle = isToday ? '巨鯨筆記' : (formatListLabel(currentDate) + '巨鯨筆記');
+
+      try {
+        const res = await fetch(src + (src.indexOf('?') >= 0 ? '&' : '?') + 't=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+
+        const updated = data.updatedAt || data.date || '';
+        if (updated) {
+          metaEl.hidden = false;
+          metaEl.textContent = '資料日期 ' + (data.date || currentDate) + (data.updatedAt ? ' · 更新 ' + data.updatedAt : '');
+        } else {
+          metaEl.hidden = true;
+          metaEl.textContent = '';
+        }
+
+        const headlines = Array.isArray(data.headlines) ? data.headlines : [];
+        headlinesEl.innerHTML = '<h2 class="section-title">' + headlinesTitle + '</h2>';
+        if (!headlines.length) {
+          headlinesEl.innerHTML += '<div class="empty-state">今日尚無頭條。</div>';
+        } else {
+          const wrap = document.createElement('div');
+          wrap.className = 'cards';
+          wrap.innerHTML = headlines.map(headlineCard).join('');
+          headlinesEl.appendChild(wrap);
+        }
+
+        const notes = Array.isArray(data.whaleNotes) ? data.whaleNotes : [];
+        whaleEl.innerHTML = '<h2 class="section-title">' + whaleTitle + '</h2>';
+        if (!notes.length) {
+          whaleEl.innerHTML += '<div class="empty-state">今日尚無巨鯨筆記。</div>';
+        } else {
+          const wrap = document.createElement('div');
+          wrap.className = 'cards';
+          wrap.innerHTML = notes.map(whaleCard).join('');
+          whaleEl.appendChild(wrap);
+        }
+      } catch (e) {
+        console.error('Failed to load data', e);
+        headlinesEl.innerHTML =
+          '<h2 class="section-title">' + headlinesTitle + '</h2>' +
+          '<div class="empty-state">無法載入資料。</div>';
+        whaleEl.innerHTML =
+          '<h2 class="section-title">' + whaleTitle + '</h2>' +
+          '<div class="empty-state">無法載入資料。</div>';
+      }
+    }
+
+    async function init() {
+      try {
+        const res = await fetch('archive/index.json?t=' + Date.now());
+        if (res.ok) {
+          const index = await res.json();
+          archiveDates = Array.isArray(index.dates) ? index.dates : [];
+        }
+      } catch (e) {
+        archiveDates = [];
+      }
+
+      const params = new URLSearchParams(window.location.search);
+      const qDate = params.get('date');
+      if (isValidDateParam(qDate) && (qDate === todayISO() || pathForDate(qDate))) {
+        currentDate = qDate;
+      } else {
+        currentDate = todayISO();
+      }
+
+      renderDateNav();
+      document.getElementById('date-prev').addEventListener('click', function () {
+        const idx = timeline.indexOf(currentDate);
+        if (idx > 0) selectDate(timeline[idx - 1]);
+      });
+      document.getElementById('date-next').addEventListener('click', function () {
+        const idx = timeline.indexOf(currentDate);
+        if (idx >= 0 && idx < timeline.length - 1) selectDate(timeline[idx + 1]);
+      });
+
+      await loadData(pathForDate(currentDate) || 'data.json');
+    }
+
+    init();
+  </script>
+</body>
+</html>
