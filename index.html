@@ -149,6 +149,13 @@
       margin-bottom: 12px;
     }
     .card .why-care strong { font-weight: 600; }
+    .card .region-note {
+      font-size: 0.8125rem;
+      color: var(--muted);
+      margin-bottom: 12px;
+      letter-spacing: 0.01em;
+    }
+    .card .region-note strong { font-weight: 600; color: var(--muted); }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
     .tag {
       display: inline-block;
@@ -350,6 +357,10 @@
       const whyHtml = why
         ? '<div class="why-care"><strong>為何在意：</strong>' + escapeHtml(why) + '</div>'
         : '';
+      const region = String(h.regionNote || '').trim();
+      const regionHtml = region
+        ? '<div class="region-note"><strong>地區：</strong>' + escapeHtml(region) + '</div>'
+        : '';
       const source = escapeHtml(h.source || '');
       const link = String(h.link || '').trim();
       const read = link
@@ -361,6 +372,7 @@
           '<h3>' + title + '</h3>' +
           (summary ? '<p>' + summary + '</p>' : '') +
           whyHtml +
+          regionHtml +
           '<div class="card-footer">' +
             '<span class="source">' + source + '</span>' +
             read +
