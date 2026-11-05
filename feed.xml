@@ -2,9 +2,33 @@
 <rss version="2.0">
   <channel>
     <title>交易所高息理財日報</title>
-    <link>./</link>
-    <description>交易所高息與理財相關日報（占位 feed，尚無條目）</description>
+    <link>https://taihangfu.github.io/exchange-earn-daily/</link>
+    <description>交易所高息與理財相關日報</description>
     <language>zh-Hant</language>
-    <lastBuildDate>Thu, 05 Nov 2026 10:40:00 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 05 Nov 2026 10:40:00 GMT</lastBuildDate>
+    <item>
+      <title>OKX Flash Earn：鎖 BTC／ETH 瓜分 100 萬 USDT（倒數約 3 日）</title>
+      <link>https://www.okx.com/en-us/help/okx-flash-earn-usdt-is-now-live-get-started-with-btc-and-eth-and-share-1000000-usdt</link>
+      <description>Stake to Earn 瓜分 100 萬 USDT 獎池，並同時攞 Simple Earn 利息；計獎至 11-08 15:00 HKT。</description>
+      <pubDate>Wed, 05 Nov 2026 10:40:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>OKX Hold to Earn USDC：VIP 持倉瓜分 40 萬 USDC</title>
+      <link>https://www.okx.com/en-us/help/hold-to-earn-usdc-to-share-400000-usdc</link>
+      <description>Trading VIP 持倉＋少量成交可瓜分 40 萬 USDC 日分獎池，活動長跑至約 12 月初。</description>
+      <pubDate>Wed, 05 Nov 2026 10:40:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Gate VIP 餘幣寶 Phase 3：USDT 7 天定期綜合最高約 9% APR</title>
+      <link>https://www.gate.com/announcements/article/102547</link>
+      <description>VIP2–14 申購 USDT 7 天定期，加息後綜合最高約 9%；須淨充值達標先有加息。</description>
+      <pubDate>Wed, 05 Nov 2026 10:40:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>幣安 Community Appreciation：高息＋2,000 萬 USDC 獎池（香港排除）</title>
+      <link>https://www.binance.com/en/support/announcement/detail/dad3f7336cd343fd9752c63b21f8d52a</link>
+      <description>黑客後社區回饋含 Flexible 加息同交易獎池，但官方條款明文排除香港居民。</description>
+      <pubDate>Wed, 05 Nov 2026 10:40:00 GMT</pubDate>
+    </item>
   </channel>
 </rss>
