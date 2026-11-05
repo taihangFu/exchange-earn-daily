@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "earliest": "2026-11-05",
+  "dates": [
+    {
+      "date": "2026-11-05",
+      "path": "archive/2026-11-05.json"
+    }
+  ]
+}
