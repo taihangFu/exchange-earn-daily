@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-11-06",
+  "updatedAt": "2026-11-06T07:59:54+08:00",
+  "headlines": [
+    {
+      "title": "OKX Flash Earn：鎖 BTC／ETH 瓜分 100 萬 USDT（倒數約 2 日）",
+      "summary": "Stake to Earn 瓜分 100 萬 USDT 獎池，並同時攞 Simple Earn 利息；計獎至 11-08 15:00 HKT。",
+      "whyCare": "收益率：無固定 APY，按 BTC／ETH 池份額攤薄（BTC 池 41 萬、ETH 池 59 萬 USDT）＋基礎利息。門檻：最低 0.001 BTC／0.01 ETH；額度按 Tier；主帳戶 KYC；子帳戶／機構除外。風險：獎池攤薄、幣價波動、CEX 託管。時限：至 2026-11-08 15:00 HKT（UTC 07:00）。",
+      "link": "https://www.okx.com/en-us/help/okx-flash-earn-usdt-is-now-live-get-started-with-btc-and-eth-and-share-1000000-usdt",
+      "date": "2026-11-06",
+      "source": "OKX",
+      "tags": [
+        "獎池",
+        "高息"
+      ],
+      "regionNote": "請登入帳戶確認地區合資格（公告指部分國家／地區或不合資格）"
+    },
+    {
+      "title": "OKX Hold to Earn USDC：VIP 持倉瓜分 40 萬 USDC",
+      "summary": "Trading VIP 持倉＋少量成交可瓜分 40 萬 USDC 日分獎池，活動長跑至約 12 月初。",
+      "whyCare": "收益率：無保證 APR，官方估上限約 8%（按日瓜分）。門檻：主帳戶 VIP；每日合資格持倉 ≥1 萬 USDC（計獎上限 10 萬）；活動期累計合資格 USDC 成交 ≥1,000 USD；須活動頁 Join。風險：VIP／成交門檻高、獎池攤薄、託管風險。時限：至 2026-12-02 23:59 UTC（約 2026-12-03 07:59 HKT）。",
+      "link": "https://www.okx.com/en-us/help/hold-to-earn-usdc-to-share-400000-usdc",
+      "date": "2026-11-06",
+      "source": "OKX",
+      "tags": [
+        "獎池",
+        "社區回饋"
+      ],
+      "regionNote": "請登入確認 VIP 等級同地區（僅合資格主帳戶）"
+    },
+    {
+      "title": "Gate VIP 餘幣寶 Phase 3：USDT 7 天定期綜合最高約 9% APR",
+      "summary": "VIP2–14 申購 USDT 7 天定期，加息後綜合最高約 9%；須淨充值達標先有加息。",
+      "whyCare": "收益率：加息後綜合最高約 9% APR（加息本金上限約 10 萬 USDT；加息約 5.3%＋基礎）。門檻：VIP2–14；淨充值 ≥10 萬 USDT 且到期前維持；額度先到先得；提前贖回無加息。風險：鎖倉流動性、淨充值跌穿失效、CEX 託管。時限：至 2026-12-02 08:00 UTC（約 2026-12-02 16:00 HKT）。",
+      "link": "https://www.gate.com/announcements/article/102547",
+      "date": "2026-11-06",
+      "source": "Gate",
+      "tags": [
+        "高息"
+      ],
+      "regionNote": "英國及其他限制地區不可用；請登入確認 VIP 同地區"
+    },
+    {
+      "title": "幣安第二輪社區回饋 Earn：U Flexible 最高約 10% APR",
+      "summary": "第二輪 Community Appreciation：申購 U（非 USDT）活期，基礎實時 APR（約 1%）＋分層 Bonus，獎池用完即停；另有雙幣／SXT 附贈活動。",
+      "whyCare": "收益率：綜合最高約 10% APR＝實時基礎（約 1%，會變）＋ Bonus（普通 +7%／0–1 萬 U；VIP1–3 +8%／至 30 萬 U；VIP4–9 +9%／至 50 萬 U）。門檻：主帳戶 KYC；先到先得至獎池耗盡；VIP 須活動開始後至少一次新申購（十月 U 活動合資格者或自動啟用）；借幣／槓桿套利唔計 Bonus。風險：標的係 U（非穩定幣 USDT）、獎池隨時停、CEX 託管、地區產品或唔開放。時限：活動一至 2026-11-24 23:59:59 UTC（約 2026-11-25 07:59 HKT）。",
+      "link": "https://www.binance.com/en/support/announcement/f8e719ab5ce440cfb564858c27f2a6f3",
+      "date": "2026-11-06",
+      "source": "Binance",
+      "tags": [
+        "高息",
+        "社區回饋",
+        "安全恢復期"
+      ],
+      "regionNote": "第二輪公告正文未再明文點名排除香港（與第一輪不同），但寫明產品／功能或唔喺你地區提供；港人必須登入確認 U Flexible／Bonus 是否可用，唔好假設一定合資格"
+    }
+  ],
+  "whaleNotes": [
+    {
+      "title": "孫哥疑似抵押 TRX 鑄 USDD＋1.4億 USDC 進幣安薅 10% 理財",
+      "summary": "中文圈鏈上追蹤帖同韓媒 CoinDdak（2026-11-03）指：關聯地址一夜抵押約 5.8 億 TRX、鑄造約 6,000 萬 USDD，再湊約 1.4 億 USDC 轉入幣安熱錢包。初傳「借錢救急」，主流解讀改為衝幣安被盜後社區回饋／Simple Earn 約 10% 年化額度。孫哥／幣安未見官方認領此筆目的。同期 Whale Alert 見 JustLendDAO／未知錢包多筆數億 TRX 大額流轉（11/2–11/5）。",
+      "whyCare": "大戶用生態內抵押槓桿穩定幣＋穩定幣入所，搶有限高息獎池；散戶額度同 VIP 層級收益率會被擠。活動結束後資金是否流出幣安係驗證「真薅羊毛」關鍵。",
+      "link": "https://www.coinddak.com/news/articleView.html?idxno=9295",
+      "date": "2026-11-03",
+      "source": "CoinDdak",
+      "related": [
+        "Justin Sun",
+        "TRX",
+        "USDD",
+        "USDC",
+        "Binance Earn"
+      ]
+    },
+    {
+      "title": "TRON USDD 單日巨鯨轉帳約 4.04 億美元（11/2–11/3）",
+      "summary": "TronRelic 鏈上統計：11/2 23:46–11/3 23:46 UTC，USDD 巨鯨轉帳合計約 4.043 億美元（114 筆），約為 30 日日均 3.7 倍；單筆最大約 1.2 億 USDD。時間窗口同孫哥抵押鑄幣傳聞重疊，未直接證明同一主體。",
+      "whyCare": "穩定幣供應／流動性異常放大，配合交易所高息活動，可能反映大戶調倉或套利路徑，宜盯後續銷毀／贖回同交易所淨流入。",
+      "link": "https://tronrelic.com/blog/large-usdd-transfers-on-tron-total-404-million-in-one-day",
+      "date": "2026-11-03",
+      "source": "TronRelic",
+      "related": [
+        "USDD",
+        "TRON",
+        "whale"
+      ]
+    }
+  ]
+}
